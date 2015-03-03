@@ -6,33 +6,39 @@ using System.Threading.Tasks;
 
 namespace CSNotepad
 {
-    public class Note<N>
+    public class Node<N>
     {
 
         // Generic class Note and name of note.
-        public Note(N note, string fileName, string noteModified)
+        private Node(string fileName, string noteModified)
         {
-            
+            string[] Note = { };
   
 
         }
 
-
+ 
         void NewNote()
         {
-            // values are for debugging for now. need to set date and file name. (prompt user.)
-            var SaveNoteProc = new Note<int>(0, "default0.txt", "0");
-
+    
 
         }
 
-
-        void SaveNote()
+        
+        void SaveNote(int curGuiTab)
         {
-            var SaveNoteProc = new Note<int>(0, "default0.txt", "1");
+            // Get note content from Note and save it to a txt file.
+            
+
+            
+
+
+
+            // Handle GUI in GUI class.
+
         }
 
-
+        
     }
 
 
