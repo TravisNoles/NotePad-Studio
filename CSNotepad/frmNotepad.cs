@@ -18,29 +18,12 @@ namespace CSNotepad
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            int[] NoteTabProperties = {1};
-        }
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-
-
         //Create New Document
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            // if changed, prompt user if they want to loose all changes, then clear.
+            // if changed, prompt user if they want to loose all changes, then clear
             notePadField0.Text = ""; // Clear notepad field
+            
 
         }
 
@@ -52,18 +35,40 @@ namespace CSNotepad
 
         }
 
+
+        // Each time user changes the text field.
         private void notePadField0_TextChanged(object sender, EventArgs e)
         {
-            string fileName = saveFileDialog1.FileName;
-
-
-            var SaveNoteProc = new Note<int>(0, "default0.txt", "1");
+          string NoteFileContent = notePadField0.Text;
 
         }
 
 
-    
-    
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
+
+        }
     
     }
+
+
+    public class Node<T>
+    {
+        public T NoteFileName
+        {
+            get { return NoteFileName; }
+            set { NoteFileName = value; }
+        }
+            
+
+
+
+
+
+
+    }
+
+
 }
