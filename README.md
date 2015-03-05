@@ -7,10 +7,10 @@ Note: I'm currently creating this application for a class project, but it is pla
 
 PLANNED FEATURES
 -----------------
-Virtual workspaces
-Spell Check
-Auto saving
-Simple interface
-Auto-complete
-Cloud saving
-Drag and drop support
+* Virtual workspaces
+* Spell Check
+* Auto saving
+* Simple interface
+* Auto-complete
+* Cloud saving
+* Drag and drop support
