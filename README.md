@@ -7,12 +7,11 @@ Notepad Studio is a new free open-source full-featured notepad alternative. It w
 
 Note: Notepad Studio is currently in early pre-alpha testing/development, don't expect it to compile or work, yet.
 
+
 CURRENT FEATURES
 -----------------
 
 * Saves text files as plain text.
-
-
 
 PLANNED FEATURES
 -----------------
@@ -22,7 +21,14 @@ PLANNED FEATURES
 * Cloud saving
 * Drag and drop support
 
+
+CHANGE LOG
+----------
+
+
+
 CONTRIBUTING
 ------------
 
 Not yet.
+
