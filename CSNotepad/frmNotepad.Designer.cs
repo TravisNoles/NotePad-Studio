@@ -186,16 +186,7 @@
             this.aboutToolStripMenuItem.Text = "About";
             // 
             // notePadField0
-            // 
-            this.notePadField0.AcceptsTab = true;
-            this.notePadField0.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.notePadField0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.notePadField0.Location = new System.Drawing.Point(3, 3);
-            this.notePadField0.Name = "notePadField0";
-            this.notePadField0.Size = new System.Drawing.Size(569, 407);
-            this.notePadField0.TabIndex = 2;
-            this.notePadField0.Text = "";
-            this.notePadField0.TextChanged += new System.EventHandler(this.notePadField0_TextChanged);
+            //
             // 
             // tabControl1
             // 
