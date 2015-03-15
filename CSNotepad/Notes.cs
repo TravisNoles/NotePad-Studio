@@ -6,26 +6,18 @@ using System.Threading.Tasks;
 
 namespace CSNotepad
 {
-    public class Node<N>
+    public class Note
     {
         //private int _tabIndex;
         private string _fileName;
         private string[] _fileContent;
         private bool _fileModified;
 
-        // Generic class Note and name of note.
-        private Node(string fileName, string noteModified)
+        public string fileName
         {
-            string[] Note = { };
-  
-
-        }
-
- 
-        void NewNote()
+            get
             {
-    
-
+                return _fileName;
             }
 
 
@@ -45,26 +37,23 @@ namespace CSNotepad
                 return _fileContent;
             }
 
-            // Handle GUI in GUI class.
+            set
+            {
+                _fileContent = value;
+            }
+        }
 
+        public bool fileModified
+        {
+            get
+            {
+                return _fileModified;
             }
 
-
-       }
-        
-       public string[] newNote
-       {
-           get
-           {
-               return _newNote;
-           }
-
-           set
-           {
-               _newNote = value;
-
-           }
-
+            set
+            {
+                _fileModified = value;
+            }
 
         }
 
@@ -74,17 +63,6 @@ namespace CSNotepad
     }
 
 
-        public bool[] NoteModified(bool modified)
-        {
-            Note note0 = new Note();
-            note0 = modified;
 
-
-            return mod
-        }
-
-       */
-
-    }
 
 }
