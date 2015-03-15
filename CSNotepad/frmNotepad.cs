@@ -15,6 +15,9 @@ namespace CSNotepad
 
     public partial class frmNotepad : Form
     {
+        Note note0 = new Note();
+
+
         public frmNotepad()
         {
             InitializeComponent();
@@ -23,18 +26,34 @@ namespace CSNotepad
         //Create New Document
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            // Check to see if text was modified.
+            if (note0.fileModified == true)
+            {
+                DialogResult createNewFile = MessageBox.Show("Are you sure you wish to start a new file?", "Confirmation", MessageBoxButtons.YesNo);
+                if (createNewFile == DialogResult.Yes)
+                {
+                    notePadField0.Text = "";
+                    note0.fileModified = false;
 
+                }else if(createNewFile == DialogResult.No)
+                {
+
+                }
+
+            }
 
         }
 
         // Save existing document
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //TODO: Catch empty path
+
             try
             {
-                Note note0 = new Note();
-                //Show Dialog (for saving files)
+                //Display save File Dialog
                 saveFileDialog1.ShowDialog();
+                saveFileDialog1.DefaultExt = "txt";
 
                 //Set FileNamePath;
                 note0.fileName = saveFileDialog1.FileName;
@@ -43,17 +62,14 @@ namespace CSNotepad
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("Error: File not found, please select a different file.");
+                MessageBox.Show("Error: File not found, please select a different file.", "Error");
             }
-
-
 
         }
 
         // Each time user changes the text field.
         private void notePadField0_TextChanged(object sender, EventArgs e)
         {
-            Note note0 = new Note();
             note0.fileModified = true;
 
 
@@ -61,7 +77,6 @@ namespace CSNotepad
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Note note0 = new Note();
             openFileDialog1.ShowDialog();
             note0.fileName = openFileDialog1.FileName;
             noteTab1.Text = note0.fileName;

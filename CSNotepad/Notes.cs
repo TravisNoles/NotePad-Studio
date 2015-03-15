@@ -8,9 +8,8 @@ namespace CSNotepad
 {
     public class Note
     {
-        //private int _tabIndex;
         private string _fileName;
-        private string[] _fileContent;
+        private string _fileContent;
         private bool _fileModified;
 
         public string fileName
@@ -30,7 +29,7 @@ namespace CSNotepad
 
         }
 
-        public string[] fileContent
+        public string fileContent
         {
             get
             {
@@ -56,6 +55,8 @@ namespace CSNotepad
             }
 
         }
+
+
 
 
         //https://msdn.microsoft.com/en-us/library/aa288471(v=vs.71).aspx
