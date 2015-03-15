@@ -12,7 +12,58 @@ using System.IO;
 
 namespace CSNotepad
 {
+    struct Notes
+    {
+        //https://msdn.microsoft.com/en-us/library/aa288471(v=vs.71).aspx
+
+        private string fileNamePrivate; // includes path
+        private string fileContentPrivate;
+        DateTime fileModTimeStampPrivate;
  
+        public string noteFileContent
+        {
+            get
+            {
+                return fileContentPrivate;
+            }
+
+            set
+            {
+                fileContentPrivate = value;
+            }
+
+        }
+
+        public string fileName
+        {
+            get
+            {
+                return fileNamePrivate;
+            }
+
+            set
+            {
+                fileNamePrivate = value;
+            }
+
+        }
+
+        public DateTime fileModTimeStamp
+        {
+            get
+            {
+                return fileModTimeStampPrivate;
+            }
+
+            set
+            {
+                fileModTimeStampPrivate = value;
+            }
+
+        }
+
+    }
+
     public partial class frmNotepad : Form
     {
         public frmNotepad()
@@ -25,13 +76,35 @@ namespace CSNotepad
      
         //Create New Document
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            NewText.TextFile[0, 0] = "0";
-
-
-
-
+        {   
             
+            if (DateTime.Now > note0.fileModTimeStamp)
+            {
+                //MessageBox.Show("Current date IS greater than stored date." + note0.fileModTimeStamp);
+                DialogResult newNoteFile = MessageBox.Show("Do you want to save changes?", "Confirmation", MessageBoxButtons.YesNoCancel);
+                if(newNoteFile == DialogResult.Yes)
+                {
+                    //Save changes to file
+
+        }
+                else if (DialogResult == DialogResult.No)
+                {
+                    // Discard any changes and start a new file.
+                    note0.fileModTimeStamp = DateTime.Now;
+                    notePadField0.Text = ""; //clear text field
+
+                }else
+                {
+
+
+                }
+
+
+
+
+            }
+
+
         }
 
         // Save existing document
@@ -39,6 +112,7 @@ namespace CSNotepad
         {            
             try
             {
+                Note note0 = new Note();
                 //Show Dialog (for saving files)
                 saveFileDialog1.ShowDialog();
 
@@ -58,27 +132,26 @@ namespace CSNotepad
         // Each time user changes the text field.
         private void notePadField0_TextChanged(object sender, EventArgs e)
         {
-            //String[,] noteNew;
-            //noteNew = Note.NewNote(0, "default.txt");
-            //notePadField0.Text = noteNew[0, 1];
-
+            Note note0 = new Note();
+            note0.fileModified = true;
            
 
         }
 
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            String[,] noteExisting;
+            Note note0 = new Note();
             openFileDialog1.ShowDialog();
-            // note0.fileName = openFileDialog1.FileName;
-            // noteTab1.Text = note0.fileName;
+            note0.fileName = openFileDialog1.FileName;
+            noteTab1.Text = note0.fileName;
 
 
             try
             {
-                //StreamReader sr = new StreamReader(note0.fileName);
-                // String line = sr.ReadToEnd();
-                // notePadField0.Text = line;
+                StreamReader sr = new StreamReader(note0.fileName);
+                String line = sr.ReadToEnd();
+                notePadField0.Text = line;
 
 
 
@@ -86,18 +159,9 @@ namespace CSNotepad
             {
 
 
-            }
-
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
 
         }
     
     }
-
-
-  
 
 }
