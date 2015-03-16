@@ -5,7 +5,7 @@ WHAT IS NOTEPAD STUDIO?
 
 Notepad Studio is a new free open-source full-featured notepad alternative. It will be similar to an IDE, except for text files. It aims to be your all-in-one tool for every note taking need while always being compatible with any other notepad editor. Notepad Studio will focus on productivity, aiming on keeping you more productive with to-do lists, note templates, and more. NotePad Studio will always feel lightweight, without overwhelming you with too many features at once.
 
-Note: Notepad Studio is currently in early pre-alpha testing/development. Not for production use.
+Notepad Studio is currently in early pre-alpha testing/development. Not for production use.
 
 
 CURRENT FEATURES
@@ -27,14 +27,11 @@ PLANNED FEATURES
 * Note templates
 * Revisions.
 
-CHANGE LOG
-----------
-
-
-
-
 CONTRIBUTING
 ------------
 
-Not yet.
+Using Sematic Versioning: http://semver.org/
+
+
+
 
