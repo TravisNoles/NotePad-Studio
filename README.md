@@ -31,7 +31,7 @@ CONTRIBUTING
 ------------
 
 Using Sematic Versioning: http://semver.org/
-
+Detailed explaination with examples: https://docs.nuget.org/create/versioning
 
 
 
