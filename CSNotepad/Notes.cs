@@ -58,7 +58,6 @@ namespace CSNotepad
 
 
 
-
         //https://msdn.microsoft.com/en-us/library/aa288471(v=vs.71).aspx
 
     }

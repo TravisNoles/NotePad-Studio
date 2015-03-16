@@ -40,9 +40,13 @@ namespace CSNotepad
 
                 }
 
+            }else
+            {
+                //Do nothing, if false.
             }
 
         }
+
 
         // Save existing document
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -58,7 +62,7 @@ namespace CSNotepad
                 //Set FileNamePath;
                 note0.fileName = saveFileDialog1.FileName;
                 System.IO.File.WriteAllText(note0.fileName, notePadField0.Text);
-
+                note0.fileModified = false; //saved until next change
             }
             catch (FileNotFoundException)
             {
@@ -79,7 +83,7 @@ namespace CSNotepad
         {
             openFileDialog1.ShowDialog();
             note0.fileName = openFileDialog1.FileName;
-            noteTab1.Text = note0.fileName;
+            noteTab1.Text = note0.fileName; //Show filename in tab.
 
 
             try
@@ -87,6 +91,7 @@ namespace CSNotepad
                 StreamReader sr = new StreamReader(note0.fileName);
                 String line = sr.ReadToEnd();
                 notePadField0.Text = line;
+                line = ""; //clear line from memory.
 
 
 
@@ -101,6 +106,29 @@ namespace CSNotepad
 
         private void tabPage3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sidebarToolStripMenuItem_Click(object sender, EventArgs e)
+        {            
+            //toggle sidebar visibility click.
+             if(sidebarToolStripMenuItem.Checked == true)
+            {
+                sidebarToolStripMenuItem.Checked = false;
+                tabControl1.Visible = false;
+
+            }else if (sidebarToolStripMenuItem.Checked == false)
+             {
+                 sidebarToolStripMenuItem.Checked = true;
+                 tabControl1.Visible = true;
+
+             }
+            
 
         }
 
