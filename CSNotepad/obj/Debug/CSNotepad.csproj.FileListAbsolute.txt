@@ -16,4 +16,3 @@ C:\Users\Travis\Source\Repos\NotePad-Studio\CSNotepad\obj\Debug\CSNotepad.csproj
 C:\Users\Travis\Source\Repos\NotePad-Studio\CSNotepad\obj\Debug\CSNotepad.frmNotepad.resources
 C:\Users\Travis\Source\Repos\NotePad-Studio\CSNotepad\obj\Debug\CSNotepad.Properties.Resources.resources
 C:\Users\Travis\Source\Repos\NotePad-Studio\CSNotepad\obj\Debug\CSNotepad.csproj.GenerateResource.Cache
-C:\Users\Travis\Source\Repos\NotePad-Studio\CSNotepad\obj\Debug\CSNotepad.Note.resources

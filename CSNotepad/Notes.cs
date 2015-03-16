@@ -6,42 +6,61 @@ using System.Threading.Tasks;
 
 namespace CSNotepad
 {
-    public class Node<N>
+    public class Note
     {
+        private string _fileName;
+        private string _fileContent;
+        private bool _fileModified;
 
-        // Generic class Note and name of note.
-        private Node(string fileName, string noteModified)
+        public string fileName
         {
-            string[] Note = { };
-  
+            get
+            {
+                return _fileName;
+            }
+
+
+            set
+            {
+                _fileName = value;
+            }
+
+
 
         }
 
- 
-        void NewNote()
+        public string fileContent
         {
-    
+            get
+            {
+                return _fileContent;
+            }
+
+            set
+            {
+                _fileContent = value;
+            }
+        }
+
+        public bool fileModified
+        {
+            get
+            {
+                return _fileModified;
+            }
+
+            set
+            {
+                _fileModified = value;
+            }
 
         }
 
-        
-        void SaveNote(int curGuiTab)
-        {
-            // Get note content from Note and save it to a txt file.
-            
-
-            
 
 
+        //https://msdn.microsoft.com/en-us/library/aa288471(v=vs.71).aspx
 
-            // Handle GUI in GUI class.
-
-        }
-
-        
     }
-
-
 
 
 
