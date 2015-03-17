@@ -75,8 +75,6 @@ namespace CSNotepad
         private void notePadField0_TextChanged(object sender, EventArgs e)
         {
             note0.fileModified = true;
-
-
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,8 +90,6 @@ namespace CSNotepad
                 String line = sr.ReadToEnd();
                 notePadField0.Text = line;
                 line = ""; //clear line from memory.
-
-
 
             }
             catch (IOException)
