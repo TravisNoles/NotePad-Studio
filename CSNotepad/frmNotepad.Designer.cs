@@ -29,6 +29,7 @@
          private void InitializeComponent()
          {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Workspace");
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNotepad));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -42,12 +43,16 @@
             this.redoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sidebarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.notePadField0 = new System.Windows.Forms.RichTextBox();
+            this.contextNoteArea = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabWorkspace = new System.Windows.Forms.TabPage();
@@ -57,17 +62,32 @@
             this.noteTab2 = new System.Windows.Forms.TabPage();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sidebarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextTabMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.treeView2 = new System.Windows.Forms.TreeView();
+            this.menuBarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.copyCTRLCToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteCTRLVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.findToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.replaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.contextNoteArea.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabWorkspace.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.noteTab1.SuspendLayout();
             this.noteTab2.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // richTextBox1
@@ -84,6 +104,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.textToolStripMenuItem,
             this.newToolStripMenuItem1,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -98,6 +119,11 @@
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.printToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.findToolStripMenuItem,
+            this.toolStripSeparator5,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -136,7 +162,13 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.undoToolStripMenuItem,
             this.redoToolStripMenuItem,
-            this.toolStripSeparator1});
+            this.toolStripSeparator1,
+            this.copyCTRLCToolStripMenuItem,
+            this.pasteCTRLVToolStripMenuItem,
+            this.cutToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.preferencesToolStripMenuItem,
+            this.replaceToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -161,10 +193,21 @@
             // newToolStripMenuItem1
             // 
             this.newToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sidebarToolStripMenuItem});
+            this.sidebarToolStripMenuItem,
+            this.menuBarToolStripMenuItem});
             this.newToolStripMenuItem1.Name = "newToolStripMenuItem1";
             this.newToolStripMenuItem1.Size = new System.Drawing.Size(44, 20);
             this.newToolStripMenuItem1.Text = "View";
+            // 
+            // sidebarToolStripMenuItem
+            // 
+            this.sidebarToolStripMenuItem.Checked = true;
+            this.sidebarToolStripMenuItem.CheckOnClick = true;
+            this.sidebarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.sidebarToolStripMenuItem.Name = "sidebarToolStripMenuItem";
+            this.sidebarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sidebarToolStripMenuItem.Text = "Sidebar";
+            this.sidebarToolStripMenuItem.Click += new System.EventHandler(this.sidebarToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -210,7 +253,7 @@
             // notePadField0
             // 
             this.notePadField0.AcceptsTab = true;
-            this.notePadField0.ContextMenuStrip = this.contextMenuStrip1;
+            this.notePadField0.ContextMenuStrip = this.contextNoteArea;
             this.notePadField0.Dock = System.Windows.Forms.DockStyle.Fill;
             this.notePadField0.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.notePadField0.Location = new System.Drawing.Point(3, 3);
@@ -220,8 +263,29 @@
             this.notePadField0.Text = "";
             this.notePadField0.TextChanged += new System.EventHandler(this.notePadField0_TextChanged);
             // 
+            // contextNoteArea
+            // 
+            this.contextNoteArea.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.pasteToolStripMenuItem});
+            this.contextNoteArea.Name = "contextMenuStrip1";
+            this.contextNoteArea.Size = new System.Drawing.Size(103, 48);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            // 
             // tabControl1
             // 
+            this.tabControl1.ContextMenuStrip = this.contextTabMenu;
             this.tabControl1.Controls.Add(this.tabWorkspace);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Arrow;
@@ -236,6 +300,7 @@
             // 
             this.tabWorkspace.AllowDrop = true;
             this.tabWorkspace.AutoScroll = true;
+            this.tabWorkspace.Controls.Add(this.treeView1);
             this.tabWorkspace.Location = new System.Drawing.Point(4, 22);
             this.tabWorkspace.Name = "tabWorkspace";
             this.tabWorkspace.Padding = new System.Windows.Forms.Padding(3);
@@ -247,12 +312,13 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.treeView2);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage4.Size = new System.Drawing.Size(126, 413);
             this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.Text = "File";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabControl2
@@ -301,34 +367,113 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // contextMenuStrip1
+            // contextTabMenu
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 48);
+            this.contextTabMenu.Name = "contextTabMenu";
+            this.contextTabMenu.Size = new System.Drawing.Size(61, 4);
             // 
-            // copyToolStripMenuItem
+            // preferencesToolStripMenuItem
             // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
+            this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.preferencesToolStripMenuItem.Text = "Preferences";
             // 
-            // pasteToolStripMenuItem
+            // treeView1
             // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
+            this.treeView1.Location = new System.Drawing.Point(6, 4);
+            this.treeView1.Name = "treeView1";
+            treeNode1.Name = "treeviewRootWorkspace";
+            treeNode1.Text = "Workspace";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            this.treeView1.Size = new System.Drawing.Size(117, 401);
+            this.treeView1.TabIndex = 0;
             // 
-            // sidebarToolStripMenuItem
+            // treeView2
             // 
-            this.sidebarToolStripMenuItem.Checked = true;
-            this.sidebarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.sidebarToolStripMenuItem.Name = "sidebarToolStripMenuItem";
-            this.sidebarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.sidebarToolStripMenuItem.Text = "Sidebar";
-            this.sidebarToolStripMenuItem.Click += new System.EventHandler(this.sidebarToolStripMenuItem_Click);
+            this.treeView2.Location = new System.Drawing.Point(6, 6);
+            this.treeView2.Name = "treeView2";
+            this.treeView2.Size = new System.Drawing.Size(114, 401);
+            this.treeView2.TabIndex = 1;
+            // 
+            // menuBarToolStripMenuItem
+            // 
+            this.menuBarToolStripMenuItem.Checked = true;
+            this.menuBarToolStripMenuItem.CheckOnClick = true;
+            this.menuBarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.menuBarToolStripMenuItem.Name = "menuBarToolStripMenuItem";
+            this.menuBarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.menuBarToolStripMenuItem.Text = "Menu Bar";
+            // 
+            // textToolStripMenuItem
+            // 
+            this.textToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.wordWrapToolStripMenuItem});
+            this.textToolStripMenuItem.Name = "textToolStripMenuItem";
+            this.textToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.textToolStripMenuItem.Text = "Format";
+            // 
+            // wordWrapToolStripMenuItem
+            // 
+            this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
+            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.wordWrapToolStripMenuItem.Text = "Word Wrap";
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.cutToolStripMenuItem.Text = "Cut (CTRL + X)";
+            // 
+            // copyCTRLCToolStripMenuItem
+            // 
+            this.copyCTRLCToolStripMenuItem.Name = "copyCTRLCToolStripMenuItem";
+            this.copyCTRLCToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.copyCTRLCToolStripMenuItem.Text = "Copy (CTRL + C)";
+            // 
+            // pasteCTRLVToolStripMenuItem
+            // 
+            this.pasteCTRLVToolStripMenuItem.Name = "pasteCTRLVToolStripMenuItem";
+            this.pasteCTRLVToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.pasteCTRLVToolStripMenuItem.Text = "Paste (CTRL + V)";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(160, 6);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Text = "Print";
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            // 
+            // findToolStripMenuItem
+            // 
+            this.findToolStripMenuItem.Name = "findToolStripMenuItem";
+            this.findToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.findToolStripMenuItem.Text = "Find";
+            // 
+            // replaceToolStripMenuItem
+            // 
+            this.replaceToolStripMenuItem.Name = "replaceToolStripMenuItem";
+            this.replaceToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.replaceToolStripMenuItem.Text = "Replace";
             // 
             // frmNotepad
             // 
@@ -347,11 +492,13 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.contextNoteArea.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
+            this.tabWorkspace.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.noteTab1.ResumeLayout(false);
             this.noteTab2.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,9 +532,26 @@
          private System.Windows.Forms.TabPage noteTab2;
          private System.Windows.Forms.OpenFileDialog openFileDialog1;
          private System.Windows.Forms.RichTextBox richTextBox2;
-         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+         private System.Windows.Forms.ContextMenuStrip contextNoteArea;
          private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
          private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
          private System.Windows.Forms.ToolStripMenuItem sidebarToolStripMenuItem;
+         private System.Windows.Forms.ContextMenuStrip contextTabMenu;
+         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
+         private System.Windows.Forms.TreeView treeView1;
+         private System.Windows.Forms.TreeView treeView2;
+         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+         private System.Windows.Forms.ToolStripMenuItem findToolStripMenuItem;
+         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+         private System.Windows.Forms.ToolStripMenuItem copyCTRLCToolStripMenuItem;
+         private System.Windows.Forms.ToolStripMenuItem pasteCTRLVToolStripMenuItem;
+         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+         private System.Windows.Forms.ToolStripMenuItem replaceToolStripMenuItem;
+         private System.Windows.Forms.ToolStripMenuItem textToolStripMenuItem;
+         private System.Windows.Forms.ToolStripMenuItem wordWrapToolStripMenuItem;
+         private System.Windows.Forms.ToolStripMenuItem menuBarToolStripMenuItem;
      }
  }
