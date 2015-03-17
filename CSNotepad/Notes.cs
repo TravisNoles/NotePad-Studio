@@ -19,14 +19,10 @@ namespace CSNotepad
                 return _fileName;
             }
 
-
             set
             {
                 _fileName = value;
             }
-
-
-
         }
 
         public string fileContent
