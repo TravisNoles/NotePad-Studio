@@ -37,7 +37,7 @@ namespace CSNotepad
 
                 }else if(createNewFile == DialogResult.No)
                 {
-
+                    // Keep file
                 }
 
             }else
@@ -66,7 +66,7 @@ namespace CSNotepad
             }
             catch (FileNotFoundException)
             {
-                MessageBox.Show("Error: File not found, please select a different file.", "Error");
+                MessageBox.Show("Error: File not found, please select a different file.", "Error", MessageBoxButtons.OK);
             }
 
         }
