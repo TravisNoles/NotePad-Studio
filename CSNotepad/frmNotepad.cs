@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSNotepad.Properties;
 using System.IO;
+using System.Windows.Forms;
 
 namespace CSNotepad
 {
@@ -16,7 +17,7 @@ namespace CSNotepad
     public partial class frmNotepad : Form
     {
         Note note0 = new Note();
-
+        TextFormatting textFormattingTool = new TextFormatting();
 
         public frmNotepad()
         {
@@ -56,8 +57,11 @@ namespace CSNotepad
             try
             {
                 //Display save File Dialog
-                saveFileDialog1.ShowDialog();
                 saveFileDialog1.DefaultExt = "txt";
+                saveFileDialog1.Filter = "Plain text files (*.txt)|*.txt|All files (*.*)|*.*";
+                saveFileDialog1.ShowDialog();
+
+
 
                 //Set FileNamePath;
                 note0.fileName = saveFileDialog1.FileName;
@@ -126,6 +130,22 @@ namespace CSNotepad
              }
             
 
+        }
+
+        private void menuBarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(notePadField0.SelectedText);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.GetText();
+            notePadField0.Paste();
         }
 
     }
