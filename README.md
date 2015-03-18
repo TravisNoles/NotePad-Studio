@@ -27,6 +27,13 @@ PLANNED FEATURES
 * Note templates
 * Revisions.
 
+
+CHANGE LOG
+-----------
+
+https://github.com/TravisNoles/NotePad-Studio/blob/master/changelog.txt
+
+
 CONTRIBUTING
 ------------
 
