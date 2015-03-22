@@ -36,6 +36,8 @@ https://github.com/TravisNoles/NotePad-Studio/blob/master/changelog.txt
 
 CONTRIBUTING
 ------------
+Requirements: Visual Studio 2013
+
 
 Using Sematic Versioning: http://semver.org/
 Detailed explaination with examples: https://docs.nuget.org/create/versioning
