@@ -76,9 +76,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tabs.cs" />
     <Compile Include="TextFormatting.cs" />
-    <Compile Include="Properties.cs" />
-    <Compile Include="Notes.cs" />
+    <Compile Include="Files.cs" />
     <Compile Include="frmNotepad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +129,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="changelog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
