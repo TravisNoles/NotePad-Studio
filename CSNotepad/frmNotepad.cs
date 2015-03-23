@@ -12,91 +12,111 @@ using System.IO;
 
 namespace CSNotepad
 {
-
     public partial class frmNotepad : Form
     {
-        Note note0 = new Note();
 
+        //File newFile = new File();
+        //File saveFile = new File();
+        //File openFile = new File();
+        File newFile = new File();
+        Tab newTab = new Tab();
+
+        //TextFormatting textFormattingTool = new TextFormatting();
 
         public frmNotepad()
         {
             InitializeComponent();
         }
 
-        //Create New Document
+        //Create New Document in a tab
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            // Check to see if text was modified.
-            if (note0.fileModified == true)
-            {
-                DialogResult createNewFile = MessageBox.Show("Are you sure you wish to start a new file?", "Confirmation", MessageBoxButtons.YesNo);
-                if (createNewFile == DialogResult.Yes)
-                {
-                    notePadField0.Text = "";
-                    note0.fileModified = false;
-
-                }else if(createNewFile == DialogResult.No)
-                {
-
-                }
-
-            }else
-            {
-                //Do nothing, if false.
-            }
-
+                    //Setup variables
+                    newFile.createNew(tabControl2.TabCount); //setup tab
+                    createNewTab(); // Create New tab GUI
         }
-
 
         // Save existing document
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO: Catch empty path
+            try
+            {
+                if (newFile.IsModified[tabControl2.SelectedIndex] == true)
+                {
+                   saveFileDialog1.ShowDialog();
+                   string filename = "";
+                   Path.GetFileName(filename);
+                   newFile.saveLoaded(tabControl2.SelectedIndex, filename, saveFileDialog1.FileName, "");
+                   saveFileDialog1.OpenFile();
+
+                }else if (newFile.IsModified[tabControl2.SelectedIndex] == false)
+                {
+
+
+                }
+
+
+
+            }catch(PathTooLongException)
+            {
+
+
+            }
+
+
+
+
+
 
             try
             {
-                //Display save File Dialog
-                saveFileDialog1.ShowDialog();
-                saveFileDialog1.DefaultExt = "txt";
+                if (newFile.IsModified[tabControl2.SelectedIndex] == true)
+                {
+                    //Setup save file dialog and show it:
+                    
 
-                //Set FileNamePath;
-                note0.fileName = saveFileDialog1.FileName;
-                System.IO.File.WriteAllText(note0.fileName, notePadField0.Text);
-                note0.fileModified = false; //saved until next change
-            }
-            catch (FileNotFoundException)
+                    newFile.Name[tabControl2.SelectedIndex] = saveFileDialog1.FileName; //Get selected file name and set the filename to instance variable
+
+                    }
+
+
+
+
+                // //write all text in the text box to a text file.
+
+            }catch (PathTooLongException)
             {
-                MessageBox.Show("Error: File not found, please select a different file.", "Error");
+                DialogResult createNewFile = MessageBox.Show("ERROR: Path/file name is too long, please rename to a shorter file name.", "Error", MessageBoxButtons.OK);
             }
 
         }
 
         // Each time user changes the text field.
-        private void notePadField0_TextChanged(object sender, EventArgs e)
+        private void textArea0_TextChanged(object sender, EventArgs e)
         {
-            note0.fileModified = true;
+            newFile.IsModified[tabControl2.SelectedIndex] = true;
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            openFileDialog1.ShowDialog();
-            note0.fileName = openFileDialog1.FileName;
-            noteTab1.Text = note0.fileName; //Show filename in tab.
+                newTab.CreateNew(tabControl2.TabPages.Count); //Setup Tab
+                createNewTab();
 
 
-            try
-            {
-                StreamReader sr = new StreamReader(note0.fileName);
+
+                
+                openFileDialog1.ShowDialog(); //Open file dialog
+                newFile.Name[tabControl2.SelectedIndex] = openFileDialog1.FileName;
+                newTab.Text[tabControl2.SelectedIndex] = newFile.Name[tabControl2.SelectedIndex]; //Show filename in tab.
+                
+
+
+
+                StreamReader sr = new StreamReader(newFile.Name[tabControl2.SelectedIndex]);
                 String line = sr.ReadToEnd();
-                notePadField0.Text = line;
+                textArea0.Text = line;
                 line = ""; //clear line from memory.
 
-            }
-            catch (IOException)
-            {
-
-
-            }
 
         }
 
@@ -111,24 +131,98 @@ namespace CSNotepad
         }
 
         private void sidebarToolStripMenuItem_Click(object sender, EventArgs e)
-        {            
+        {
             //toggle sidebar visibility click.
-             if(sidebarToolStripMenuItem.Checked == true)
+            if(sidebarToolStripMenuItem.Checked == true)
             {
-                sidebarToolStripMenuItem.Checked = false;
-                tabControl1.Visible = false;
+                //sidebarToolStripMenuItem.Checked = true;
+                tabControl1.Visible = true;
 
-            }else if (sidebarToolStripMenuItem.Checked == false)
-             {
-                 sidebarToolStripMenuItem.Checked = true;
-                 tabControl1.Visible = true;
+            }
 
-             }
-            
+
+            if (sidebarToolStripMenuItem.Checked == false)
+            {
+                 //sidebarToolStripMenuItem.Checked = true;
+                 tabControl1.Visible = false;
+
+            }
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(textArea0.SelectedText);
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clipboard.GetText();
+            textArea0.Paste();
+        }
+
+        private void wordWrapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            //toggle wordwrap toggling
+            if (sidebarToolStripMenuItem.Checked == true)
+            {
+                textArea0.WordWrap = false;
+
+            }
+
+
+            if (sidebarToolStripMenuItem.Checked == false)
+            {
+                textArea0.WordWrap = true;
+
+            }
+
+
 
         }
 
+        private void renameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+
+
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+
+
+        private void createNewTab()
+        {
+            //Create new instance of a rich textbox.
+            RichTextBox newTextBox = new RichTextBox();
+            newTextBox.Dock = DockStyle.Fill;
+            newTextBox.Name = newFile.Name[tabControl2.TabCount + 1];
+            newTextBox.Text = "";
+
+
+            //Create new tab.
+            newTab.CreateNew(tabControl2.TabPages.Count);
+            tabControl2.TabPages.Add(newTab.Text[tabControl2.SelectedIndex]); //Add new tab with the file name already set.
+            this.tabControl2.TabPages[newTab.CurrentTabs].Controls.Add(newTextBox); //create textbox in new tab
+            
+            
+            
+            //http://www.codeproject.com/Questions/210229/How-to-add-a-dynamic-RichTextBox-to-a-dynamically
+        }
+
+
+
+
+
     }
+
+
 
 
 
