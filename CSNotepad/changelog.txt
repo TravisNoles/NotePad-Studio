@@ -1,5 +1,14 @@
 NOTEPAD STUDIO - CHANGELOG
 
+v0.1.0-final
+
+
+* FEATURE: Added open new file in new tab.
+* MISC: Cleaned up opening file code.
+
+
+
+
 v0.1.0-alpha2
 
 * BUGFIX: Sidebar doesn't toggle when clicking on View > Sidebar.

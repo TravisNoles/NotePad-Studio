@@ -32,13 +32,44 @@ namespace CSNotepad
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
                     //Setup variables
-                    newFile.createNew(tabControl2.TabCount); //setup tab
+                    newFile.CreateNew(tabControl2.TabCount); //setup tab
                     createNewTab(); // Create New tab GUI
         }
 
         // Save existing document
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Show Dialog
+            // Get filename that was selected.
+            // Set filename in dialog.
+            // Open the file in a new tab
+
+            try
+            {
+                if (newFile.IsModified[tabControl2.SelectedIndex] == true)
+                {
+                    //Show Dialog
+                    saveFileDialog1.ShowDialog();
+                    //Get filename from savefiledialog and set it
+                    Path.GetFileName(newFile.FileName[tabControl2.SelectedIndex]);
+                    saveFileDialog1.OpenFile();
+
+                }else if (newFile.IsModified[tabControl2.SelectedIndex] == false)
+                {
+
+
+
+                }
+
+
+            }catch(PathTooLongException)
+            {
+                DialogResult createNewFile = MessageBox.Show("ERROR: Path/file name is too long, please rename to a shorter file name.", "ERROR", MessageBoxButtons.OK);
+            }
+
+
+
+            /*
             try
             {
                 if (newFile.IsModified[tabControl2.SelectedIndex] == true)
@@ -46,7 +77,7 @@ namespace CSNotepad
                    saveFileDialog1.ShowDialog();
                    string filename = "";
                    Path.GetFileName(filename);
-                   newFile.saveLoaded(tabControl2.SelectedIndex, filename, saveFileDialog1.FileName, "");
+                   newFile.saveNew(tabControl2.SelectedIndex, filename, saveFileDialog1.FileName, "");
                    saveFileDialog1.OpenFile();
 
                 }else if (newFile.IsModified[tabControl2.SelectedIndex] == false)
@@ -62,33 +93,7 @@ namespace CSNotepad
 
 
             }
-
-
-
-
-
-
-            try
-            {
-                if (newFile.IsModified[tabControl2.SelectedIndex] == true)
-                {
-                    //Setup save file dialog and show it:
-                    
-
-                    newFile.Name[tabControl2.SelectedIndex] = saveFileDialog1.FileName; //Get selected file name and set the filename to instance variable
-
-                    }
-
-
-
-
-                // //write all text in the text box to a text file.
-
-            }catch (PathTooLongException)
-            {
-                DialogResult createNewFile = MessageBox.Show("ERROR: Path/file name is too long, please rename to a shorter file name.", "Error", MessageBoxButtons.OK);
-            }
-
+            */
         }
 
         // Each time user changes the text field.
@@ -99,22 +104,30 @@ namespace CSNotepad
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                newTab.CreateNew(tabControl2.TabPages.Count); //Setup Tab
-                createNewTab();
+                //Show File dialog.
+                openFileDialog1.ShowDialog(); // Display openFileDialog
+                //Set variables for creation of existing file.
+                newFile.openExisting(tabControl2.TabPages.Count, openFileDialog1.FileName);
 
 
+                // //Create new instance of a rich textbox.
+                RichTextBox newTextBox = new RichTextBox();
+                // Fill the tab with the textbox
+                newTextBox.Dock = DockStyle.Fill;
+                //Set the name of text boxdymaically
+                newTextBox.Name = newFile.FileName[tabControl2.TabCount + 1];
 
-                
-                openFileDialog1.ShowDialog(); //Open file dialog
-                newFile.Name[tabControl2.SelectedIndex] = openFileDialog1.FileName;
-                newTab.Text[tabControl2.SelectedIndex] = newFile.Name[tabControl2.SelectedIndex]; //Show filename in tab.
-                
+                //Create new tab.
+                newTab.CreateNew(tabControl2.TabPages.Count);
+                tabControl2.TabPages.Add(newFile.TabName[tabControl2.SelectedIndex]); //Add new tab with the file name already set.
+                this.tabControl2.TabPages[newTab.CurrentTabs].Controls.Add(newTextBox); //create textbox in new tab
 
+                //newFile.FileName[tabControl2.TabPages.Count + 1] = openFileDialog1.FileName;
+                //newTab.Text[tabControl2.TabPages.Count + 1] = newFile.FileName[tabControl2.TabPages.Count + 1]; //Show filename in tab.
 
-
-                StreamReader sr = new StreamReader(newFile.Name[tabControl2.SelectedIndex]);
+                StreamReader sr = new StreamReader(newFile.FileName[tabControl2.TabPages.Count]);
                 String line = sr.ReadToEnd();
-                textArea0.Text = line;
+                newTextBox.Text = line;
                 line = ""; //clear line from memory.
 
 
@@ -202,13 +215,11 @@ namespace CSNotepad
             //Create new instance of a rich textbox.
             RichTextBox newTextBox = new RichTextBox();
             newTextBox.Dock = DockStyle.Fill;
-            newTextBox.Name = newFile.Name[tabControl2.TabCount + 1];
-            newTextBox.Text = "";
-
+            newTextBox.Name = newFile.FileName[tabControl2.TabCount + 1];
 
             //Create new tab.
             newTab.CreateNew(tabControl2.TabPages.Count);
-            tabControl2.TabPages.Add(newTab.Text[tabControl2.SelectedIndex]); //Add new tab with the file name already set.
+            tabControl2.TabPages.Add(newFile.TabName[tabControl2.SelectedIndex]); //Add new tab with the file name already set.
             this.tabControl2.TabPages[newTab.CurrentTabs].Controls.Add(newTextBox); //create textbox in new tab
             
             

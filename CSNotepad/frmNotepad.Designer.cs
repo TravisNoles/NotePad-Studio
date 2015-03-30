@@ -487,7 +487,7 @@
             this.textArea0.Name = "textArea0";
             this.textArea0.Size = new System.Drawing.Size(569, 407);
             this.textArea0.TabIndex = 2;
-            this.textArea0.Text = "Default File";
+            this.textArea0.Text = "";
             this.textArea0.TextChanged += new System.EventHandler(this.textArea0_TextChanged);
             // 
             // frmNotepad
