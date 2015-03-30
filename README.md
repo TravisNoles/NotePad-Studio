@@ -31,7 +31,7 @@ PLANNED FEATURES
 CHANGE LOG
 -----------
 
-https://github.com/TravisNoles/NotePad-Studio/blob/master/changelog.txt
+https://github.com/TravisNoles/NotePad-Studio/blob/master/CSNotepad/changelog.txt
 
 
 CONTRIBUTING
