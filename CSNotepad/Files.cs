@@ -14,7 +14,6 @@ namespace CSNotepad
         public string[] TabName = new string[50];
         public bool[] IsModified = new bool[50];
 
-
         //initialize variables
         void Intialize()
         {

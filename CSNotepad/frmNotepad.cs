@@ -14,10 +14,6 @@ namespace CSNotepad
 {
     public partial class frmNotepad : Form
     {
-
-        //File newFile = new File();
-        //File saveFile = new File();
-        //File openFile = new File();
         File newFile = new File();
         Tab newTab = new Tab();
 
@@ -33,7 +29,8 @@ namespace CSNotepad
         {
                     //Setup variables
                     newFile.createNew(tabControl2.TabCount); //setup tab
-                    createNewTab(); // Create New tab GUI
+                    newTab.CreateNew(tabControl2.TabCount);
+                    //createNewTab(); // Create New tab GUI
         }
 
         // Save existing document
@@ -62,11 +59,6 @@ namespace CSNotepad
 
 
             }
-
-
-
-
-
 
             try
             {
@@ -99,15 +91,15 @@ namespace CSNotepad
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                newTab.CreateNew(tabControl2.TabPages.Count); //Setup Tab
-                createNewTab();
+                newTab.CreateNew(tabControl2.TabPages.Count); // Set tab variables.
 
 
-
-                
                 openFileDialog1.ShowDialog(); //Open file dialog
                 newFile.Name[tabControl2.SelectedIndex] = openFileDialog1.FileName;
                 newTab.Text[tabControl2.SelectedIndex] = newFile.Name[tabControl2.SelectedIndex]; //Show filename in tab.
+
+                createNewTab();
+
                 
 
 
@@ -214,6 +206,11 @@ namespace CSNotepad
             
             
             //http://www.codeproject.com/Questions/210229/How-to-add-a-dynamic-RichTextBox-to-a-dynamically
+        }
+
+        private void frmNotepad_Load(object sender, EventArgs e)
+        {
+
         }
 
 

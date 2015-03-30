@@ -10,7 +10,7 @@ namespace CSNotepad
     {
         public string[] Name = new string[50];
         public string[] Text = new string[50];
-        public int CurrentTabs;
+        public int CurrentTabs; //Stores total tabs
 
 
         public void CreateNew(int currentTabs)
@@ -19,16 +19,21 @@ namespace CSNotepad
             CurrentTabs = currentTabs;
             Name[tabIndex] = "noteTab" + tabIndex.ToString();
             Text[tabIndex] = "New Note" + tabIndex.ToString();
-
         }
-
-
 
         public void CreateNewTabExistingFile(int tabIndex, int currentTabs)
         {
 
             Name[tabIndex] = "noteTab" + tabIndex.ToString();
             Text[tabIndex] = "New Note" + tabIndex.ToString();
+
+        }
+
+
+        // Remove Tab
+        public void RemoveExistingTab(int tabIndex, int currentTabs)
+        {
+
 
         }
 
