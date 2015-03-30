@@ -15,15 +15,14 @@ namespace CSNotepad
 
         public void CreateNew(int currentTabs)
         {
-            int tabIndex = currentTabs + 1;
             CurrentTabs = currentTabs;
+            int tabIndex = currentTabs + 1;
             Name[tabIndex] = "noteTab" + tabIndex.ToString();
             Text[tabIndex] = "New Note" + tabIndex.ToString();
         }
 
         public void CreateNewTabExistingFile(int tabIndex, int currentTabs)
         {
-
             Name[tabIndex] = "noteTab" + tabIndex.ToString();
             Text[tabIndex] = "New Note" + tabIndex.ToString();
 

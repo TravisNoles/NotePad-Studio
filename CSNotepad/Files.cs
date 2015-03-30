@@ -8,24 +8,29 @@ namespace CSNotepad
 {
     public class File
     {
-        public string[] Name = new string[50];
-        public string[] Path = new string[50];
-        public string[] Text = new string[50];
+        // Purpose: Stores file information into memory.
+
+
+        public string[] FileName = new string[50];
+        public string[] FilePath = new string[50];
+        public string[] FileText = new string[50];
         public string[] TabName = new string[50];
+        public string[] TabText = new string[50];
         public bool[] IsModified = new bool[50];
+        public int tabsOpen;
 
         //initialize variables
         void Intialize()
         {
-            for (int x = 0; x < Name.Length; x++)
+            for (int x = 0; x < FileName.Length; x++)
             {
-                Name[x] = "";
+                FileName[x] = "";
 
             }
 
-            for (int x = 0; x < Text.Length; x++)
+            for (int x = 0; x < FileText.Length; x++)
             {
-                Text[x] = "";
+                FileText[x] = "";
 
             }
 
@@ -39,31 +44,43 @@ namespace CSNotepad
 
 
         }
-        
-
-        public void createNew(int tabIndex)
+       
+     
+        //Default new file setup
+        public void CreateNew(int tabIndex)
         {
-            tabIndex = tabIndex + 1; //increase it by 1, to put the tab on the right of existing tab(s)
-            Name[tabIndex] = "New Text " + tabIndex.ToString();
+            tabIndex = tabsOpen + 1; //increase it by 1, to put the tab on the right of existing tab(s)
+            
+            // Set the file name
+            FileName[tabIndex] = "newfile" + tabIndex.ToString() + ".txt";
+
+            // Set the name of the tab.
+            TabName[tabIndex] = "noteTab" + tabIndex.ToString();
+
+            // Set the text of the tab
+            TabText[tabIndex] = "New File" + tabIndex.ToString();
+        }
+
+        public void openExisting(int tabIndex, string filename)
+        {
+            tabIndex = tabIndex + 1;
+            //Set filename
+            FileName[tabIndex] = filename;
+            TabName[tabIndex] = filename;
+
+
         }
 
 
-        void openExisting(int tabIndex, string ExistingName, string ExistingPath, string ExistingText)
+        public void saveNew(int tabIndex, string LoadedName, string LoadedPath, string LoadedText)
         {
-            Name[tabIndex] = ExistingName;
-            Path[tabIndex] = ExistingPath;
-            Text[tabIndex] = ExistingText;
-        }
-
-
-        public void saveLoaded(int tabIndex, string LoadedName, string LoadedPath, string LoadedText)
-        {
-            Name[tabIndex] = LoadedName;
-            Path[tabIndex] = LoadedPath;
-            Text[tabIndex] = LoadedText;
-
+            FileName[tabIndex] = LoadedName;
+            FilePath[tabIndex] = LoadedPath;
+            FileText[tabIndex] = LoadedText;
             System.IO.File.WriteAllText(LoadedPath, LoadedText);
         }
+
+
 
 
 

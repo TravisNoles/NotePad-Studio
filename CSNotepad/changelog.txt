@@ -3,10 +3,8 @@ NOTEPAD STUDIO - CHANGELOG
 v0.1.0-final
 
 
-
-
-
-KNOWN BUG: Additional information: The process cannot access the file 'C:\Users\Travis\Documents\test.txt' because it is being used by another process.
+* FEATURE: Added open new file in new tab.
+* MISC: Cleaned up opening file code.
 
 
 
