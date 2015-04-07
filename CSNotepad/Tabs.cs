@@ -13,6 +13,14 @@ namespace CSNotepad
         public int CurrentTabs;
 
 
+        public string getNewTabName()
+        {
+
+
+            return 
+        }
+
+
         public void CreateNew(int currentTabs)
         {
             CurrentTabs = currentTabs;
@@ -21,7 +29,6 @@ namespace CSNotepad
             Text[tabIndex] = "New Note" + tabIndex.ToString();
 
         }
-
 
 
         public void CreateNewTabExistingFile(int tabIndex, int currentTabs)

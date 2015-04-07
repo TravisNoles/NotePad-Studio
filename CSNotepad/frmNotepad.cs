@@ -28,12 +28,13 @@ namespace CSNotepad
             InitializeComponent();
         }
 
-        //Create New Document in a tab
+        //Create new text file in a new tab.
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-                    //Setup variables
-                    newFile.CreateNew(tabControl2.TabCount); //setup tab
-                    createNewTab(); // Create New tab GUI
+            
+
+
+
         }
 
         // Save existing document
@@ -106,6 +107,7 @@ namespace CSNotepad
         {
                 //Show File dialog.
                 openFileDialog1.ShowDialog(); // Display openFileDialog
+                
                 //Set variables for creation of existing file.
                 newFile.openExisting(tabControl2.TabPages.Count, openFileDialog1.FileName);
 
