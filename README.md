@@ -36,11 +36,11 @@ https://github.com/TravisNoles/NotePad-Studio/blob/master/CSNotepad/changelog.tx
 
 CONTRIBUTING
 ------------
-Requirements: Visual Studio 2013
+Requirements: Visual Studio 2013 + Git (may work on other VS versions.)
 
+Sematic Versioning: http://semver.org/ -- More Info: https://docs.nuget.org/create/versioning
 
-Using Sematic Versioning: http://semver.org/
-Detailed explaination with examples: https://docs.nuget.org/create/versioning
+Trello: https://trello.com/b/vZVukoA4/project-notepad-studio
 
 
 
