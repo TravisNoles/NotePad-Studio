@@ -3,194 +3,160 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using FileStream;
+using System.Collections.Generic;
 
 namespace CSNotepad
 {
+    //Handles file ops.
     public class File
     {
-        // Purpose: Stores file information into memory.
+        private Dictionary<int, List<String>> FileStor = new Dictionary<int, List<string>>();
 
+        //List<string>: Stores properties:
+            // 0: FileName
+            // 1: FileText
+            // 2: FilePath
+            // 3: IsModified
 
-        public string[] FileName = new string[50];
-        public string[] FilePath = new string[50];
-        public string[] FileText = new string[50];
-        public string[] TabName = new string[50];
-        public string[] TabText = new string[50];
-        public bool[] IsModified = new bool[50];
-        public int tabsOpen;
-
-
-        //initialize variables
-        void Intialize()
+        //Get/Set File Name
+        public string getFileName(int selectedTab)
         {
-            for (int x = 0; x < FileName.Length; x++)
-            {
-                FileName[x] = "";
+            return FileStor[selectedTab][0]; // 0 is filename.
+        }
 
-            }
+        //Set the filename
+        public void setFileName(int selectedTab, string fileName)
+        {
+            FileStor[selectedTab].Insert(0, fileName);
+        }
+           
+        //Get modification propetty of the file.
+        public string getFilePropertyModified(int selectedTab)
+        {
+            return FileStor[selectedTab][3]; //3 is the file modified index of the list.
+        }
 
-            for (int x = 0; x < FileText.Length; x++)
-            {
-                FileText[x] = "";
+        //Set modification property of the file.
+        public void setFilePropertyModified(int selectedTab)
+        {
+            FileStor[selectedTab].Insert(3, "true");
+        }
 
-            }
+        //Read File
+        public void readFile(string filename)
+        {
+            //Open StreamReader
 
-            for (int x = 0; x < IsModified.Length; x++)
-            {
-                IsModified[x] = false;
+        }
 
-            }
-
-
+        //Write File
+        public void writeFile(string filename)
+        {
+            //Open StreamWriter
 
 
         }
-       
-     
-        //Default new file setup
-        public void CreateNew(int tabIndex)
+
+
+
+        //REMOVE BELOW AFTER OPTIMIZATION
+        /*
+
+
+        //TODO: Create a new file object dynamically
+        public string[] createNew(int selectedTab, string filename, string filepath, string filetext)
         {
-            tabIndex = tabsOpen + 1; //increase it by 1, to put the tab on the right of existing tab(s)
+            string[] NewFile = new string[10]; //Creates a return newfile string array
+
+            //Set Tab Text - Based on default filename && adds +1 tabs onto existing tabs.
+            filename = "newfile" + newTabNumberAsString();
+
+            //Add file information to dictionary.
+            FileStor[selectedTab].Add(filename);
+            FileStor[selectedTab].Add(filepath);
+            FileStor[selectedTab].Add(filetext);
+
+            // Create file in program dir.
             
+
+
+
+
+            // Create NewFile DataObj
+
+
+            return NewFile;
+        }
+
+        
+        public void createNewdd(int tab, string filename, string fullpath, string txttext, bool modified)
+        {
             // Set the file name
-            FileName[tabIndex] = "newfile" + tabIndex.ToString() + ".txt";
+            FileName[tab] = "newfile" + tab.ToString() + ".txt";
+
+            //Set the tab Name
+
+
 
             // Set the name of the tab.
-            TabName[tabIndex] = "noteTab" + tabIndex.ToString();
+            FileName[tab] = "noteTab" + tab.ToString();
 
             // Set the text of the tab
-            TabText[tabIndex] = "New File" + tabIndex.ToString();
+            Text[tab] = "New File" + tab.ToString();
+
+            // Not modified by default.
+            IsModified[tab] = modified;
         }
 
-        public void openExisting(int tabIndex, string filename)
+        public void openExisting(int tab, string filename)
         {
-            tabIndex = tabIndex + 1;
-            //Set filename
-            FileName[tabIndex] = filename;
-            TabName[tabIndex] = filename;
+            //Set filename for current tab
+            FileName[tab] = filename;
 
+            StreamReader openTextFile = new StreamReader(filename);
+            String line = openTextFile.ReadToEnd();
+            Text[tab] = line;
 
         }
 
-
-        public void saveNew(int tabIndex, string LoadedName, string LoadedPath, string LoadedText)
+        public void saveExisting(int tabIndex, string LoadedName, string LoadedPath, string LoadedText)
         {
             FileName[tabIndex] = LoadedName;
-            FilePath[tabIndex] = LoadedPath;
-            FileText[tabIndex] = LoadedText;
+            Path[tabIndex] = LoadedPath;
+            Text[tabIndex] = LoadedText;
             System.IO.File.WriteAllText(LoadedPath, LoadedText);
         }
 
-
-
-
-
-
-
-
-        /*
-        private string[] _fileName;
-        private string[] _tabName;
-        private string[] _fileContent;
-        private bool[] _fileModified;
-        private bool[] _wordWrap;
-        private int[] _selectedTab;
-
-
-        //get set index of varibles array (accessor, setter)
-        //indexer declaration, throws exception out of bounds.
-        public int this[int index]
+        //TODO: Set file name
+        public void setFileName(int tab, string filename)
         {
-            get
-            {
-                return _selectedTab[index];
-            }
+            FileName[tab] = filename;
+        }
 
-            set
-            {
-                _selectedTab[index] = value;
-            }
+        public string getFileName(int tab)
+        {
+            return FileName[tab];
+        }
 
+        public void setModified(int tab, bool value)
+        {
 
         }
 
-        public string this[int index]
+        public bool getModified(int tab)
         {
-            get
-            {
-                return _fileName[index];
-            }
-
-            set
-            {
-                _fileName[index] = value;
-            }
-
-
+            return IsModified[tab];
         }
 
-
-
-
-
-
-        public string fileName
+        //TODO: Read file.
+        public string readFile(int tab, string filename)
         {
-            get
-            {
-                return _fileName;
-            }
-
-            set
-            {
-                _fileName = value;
-            }
+            return Text[tab];
         }
 
-        public string tabName
-        {
-            get
-            {
-                return _tabName;
-            }
-
-            set
-            {
-                _tabName = value;
-            }
-
-        }
-
-        public string fileContent
-        {
-            get
-            {
-                return _fileContent;
-            }
-
-            set
-            {
-                _fileContent = value;
-            }
-        }
-
-        public bool fileModified
-        {
-            get
-            {
-                return _fileModified;
-            }
-
-            set
-            {
-                _fileModified = value;
-            }
-
-        }
-        */
-
-
-
+         */
     }
 
 

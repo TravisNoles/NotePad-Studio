@@ -1,10 +1,16 @@
 NOTEPAD STUDIO - CHANGELOG
 
-v0.1.0-final
+v0.2.0-alpha.1
 
 
 * FEATURE: Added open new file in new tab.
-* MISC: Cleaned up opening file code.
+* FEATURE: Right-click add file to sidebar.
+* FEATURE: Copying and pasting.
+* MISC: Renamed left tab sidebar text to contents.
+* Revamped code, and changed to using dictionaries, instead of classes.
+* Combined code to manage both tabs and files in one class.
+
+
 
 
 

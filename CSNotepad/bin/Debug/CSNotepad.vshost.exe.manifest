@@ -42,24 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CSNotepad.exe" size="305056">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CSNotepad.exe" size="305568">
       <assemblyIdentity name="CSNotepad" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Psi9JdBOz1AP4NEjEt8ZiC5o9vBpmfzdIMCUqMDzNA0=</dsig:DigestValue>
+        <dsig:DigestValue>M9/+k+9jqP/6t1LoaSuUySBmvSWEqWTv2vaffqWA1/Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="1758">
+  <file name="changelog.txt" size="1898">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>wdNHw3adcHJJEW85FD9bh5TeLxSvSNdwQtqYNQnpP3A=</dsig:DigestValue>
+      <dsig:DigestValue>3bXZtcrNfvXiNevsx/jJUn8wzZbd+5D5s1QEMScsaMQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CSNotepad.exe.config" size="187">
