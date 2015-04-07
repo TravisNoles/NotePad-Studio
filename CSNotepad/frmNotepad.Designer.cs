@@ -105,9 +105,9 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.newToolStripMenuItem1,
             this.textToolStripMenuItem,
             this.toolsToolStripMenuItem,
-            this.newToolStripMenuItem1,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -275,7 +275,7 @@
             this.wordWrapToolStripMenuItem.CheckOnClick = true;
             this.wordWrapToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.wordWrapToolStripMenuItem.Name = "wordWrapToolStripMenuItem";
-            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.wordWrapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.wordWrapToolStripMenuItem.Text = "Word Wrap";
             this.wordWrapToolStripMenuItem.Click += new System.EventHandler(this.wordWrapToolStripMenuItem_Click);
             // 
@@ -302,7 +302,7 @@
             this.sidebarToolStripMenuItem.CheckOnClick = true;
             this.sidebarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.sidebarToolStripMenuItem.Name = "sidebarToolStripMenuItem";
-            this.sidebarToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.sidebarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.sidebarToolStripMenuItem.Text = "Sidebar";
             this.sidebarToolStripMenuItem.Click += new System.EventHandler(this.sidebarToolStripMenuItem_Click);
             // 
@@ -317,7 +317,7 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(103, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
             // tabPage1
@@ -440,7 +440,7 @@
             this.tabFileProps.Padding = new System.Windows.Forms.Padding(3);
             this.tabFileProps.Size = new System.Drawing.Size(126, 413);
             this.tabFileProps.TabIndex = 1;
-            this.tabFileProps.Text = "File";
+            this.tabFileProps.Text = "Contents";
             this.tabFileProps.UseVisualStyleBackColor = true;
             // 
             // treeView2
@@ -504,7 +504,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmNotepad";
             this.Text = "Notepad Studio";
-            this.Load += new System.EventHandler(this.frmNotepad_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
