@@ -32,14 +32,10 @@ https://github.com/TravisNoles/NotePad-Studio/blob/master/CSNotepad/changelog.tx
 
 CONTRIBUTING
 ------------
-1) Request access to Trello: Trello: https://trello.com/b/vZVukoA4/notepad-studio
-2) Visual Studio 2013 with Git
-3) Fork repository.
-4) Submit pull request for code-review.
-5) Wait for acceptance.
-6) ???
-7) Profit!
-8) Code contributed, warm-fuzzy feeling gained.
+* 1) Request access to Trello: Trello: https://trello.com/b/vZVukoA4/notepad-studio
+* 2) Visual Studio 2013 with Git
+* 3) Fork repository.
+* 4) Submit pull request for code-review.
 
 
 Sematic Versioning: http://semver.org/ -- More Info: https://docs.nuget.org/create/versioning
