@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CSNotepad.Properties;
 using System.IO;
+using System.Dynamic;
 
 //Changes:
 // Wordwrap, copy and pasting, opening file, saving file.
@@ -19,13 +20,12 @@ namespace CSNotepad
     public partial class frmNotepad : Form
     {
         //Create new instance of file class.
-        File filehandler = new File();
-        Tab tabhandler = new Tab();
+        //File filehandler = new File();
+        //Tab tabhandler = new Tab();
 
         //Tab Dictionary: tabIndex, TabData(TabName, TabText);
-        Dictionary<int, List<string>> TabStor = new Dictionary<int, List<string>>();
+        //Dictionary<int, List<string>> TabStor = new Dictionary<int, List<string>>();
         //File dictionary: index, FileData(FileName, FilePath, FileText, ismodified)
-        Dictionary<int, List<string>> FileStor = new Dictionary<int, List<string>>();
 
 
         public frmNotepad()
@@ -33,113 +33,89 @@ namespace CSNotepad
             InitializeComponent();
         }
 
-        //Create New Document in a tab
+
+        //Create new text file in a new tab.
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            // Create a new tab
-            string tabName = tabhandler.getNewTab();
+            //Create the FileName (randomize)
+            string fileName = System.IO.Path.GetRandomFileName();
 
-            //Add Textbox
-            int newtabnum = tabControl2.TabCount + 1;
-            filehandler.createNew(newtabnum, "newfile.txt", "C:\newfile.txt", "", false);
-            createNewTab(newtabnum, "notetab" + newtabnum.ToString(), "newtab"); // Create New tab GUI
+            StreamWriter newtext = new StreamWriter(fileName);
+            
+            newtext.WriteLine(""); //Write new file (blank)
+            
+            //Create TextBox & Set Properties
+            RichTextBox newTextBox = new RichTextBox(); //Create new instance of richtextbox and setup
+            newTextBox.Name = "textArea" + tabControl2.TabCount; //increase the total by 1, to create the tab on the right.
+            MessageBox.Show(newTextBox.Name, "test", MessageBoxButtons.OK);
+            newTextBox.Multiline = true;
+            newTextBox.WordWrap = wordWrapToolStripMenuItem.Checked; //if checked is true, sets wordwrap of new text file to true as well. extracts the bool value.
+            newTextBox.Dock = DockStyle.Fill; // Fill dock to tab a new tab.
+
+            // Add new tab.
+            tabControl2.TabPages.Add("test");
+            //tabControl2.TabPages[tabControl2.TabPages.Count - 1].Text = "New Text" + " " + tabControl2.TabPages.Count;
+            tabControl2.TabPages[tabControl2.TabPages.Count - 1].Text = fileName;
+            this.tabControl2.TabPages[tabControl2.TabPages.Count - 1].Controls.Add(newTextBox); //Place textbox in new tab. (.count subroutine is returning from index 1 and not index 0)
+            
+
+            // http://www.codeproject.com/Questions/210229/How-to-add-a-dynamic-RichTextBox-to-a-dynamically
+
+
         }
 
         // Save existing document
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            //Find textbox in current tab, and store new instance of it in txtname.
+
+            string currenttab = (tabControl2.SelectedIndex).ToString();
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currenttab, true)[0];
+
+
+            //Display savefile dialog to user.
+            saveFileDialog1.ShowDialog();
+            string filename = saveFileDialog1.FileName;
+
+
+            //Prevents empty path (causing an empty path exception)
+            if (filename != "")
             {
-                // Get whether the current file in selected tab is modified.
-                bool isSelectedTabModified = filehandler.getModified(tabControl2.SelectedIndex);
-                string selectedFileName;
+                StreamWriter newtextfile = new StreamWriter(filename);
+                //Save file to user specified folder.
+                newtextfile.WriteLine(txtname.Text);
+                newtextfile.Close();
 
-                if (isSelectedTabModified == true)
-                {
-                    //If the file is modified, show dialog for saving.
-                    saveFileDialog1.ShowDialog();
-                    //Get filename from savefiledialog and set it
-                   selectedFileName = filehandler.getFileName(tabControl2.SelectedIndex);
-                   saveFileDialog1.OpenFile();
-                }
-                else if (isSelectedTabModified == false)
-                {
-
-
-                }
-
-
-            }catch(PathTooLongException)
-            {
-                DialogResult createNewFile = MessageBox.Show("ERROR: Path/file name is too long, please rename to a shorter file name.", "ERROR", MessageBoxButtons.OK);
             }
 
-
-
-            /*
-            try
-            {
-                if (newFile.IsModified[tabControl2.SelectedIndex] == true)
-                {
-                   saveFileDialog1.ShowDialog();
-                   string filename = "";
-                   Path.GetFileName(filename);
-                   newFile.saveNew(tabControl2.SelectedIndex, filename, saveFileDialog1.FileName, "");
-                   saveFileDialog1.OpenFile();
-
-                }else if (newFile.IsModified[tabControl2.SelectedIndex] == false)
-                {
-
-
-                }
-
-
-
-            }catch(PathTooLongException)
-            {
-
-
-            }
-            */
+            
         }
 
         // Each time user changes the text field.
         private void textArea0_TextChanged(object sender, EventArgs e)
         {
-            filehandler.setModified(tabControl2.SelectedIndex, true); // Change selected tab for file to modified.
+            //filehandler.setFilePropertyModified(tabControl2.SelectedIndex, true); // Change selected tab for file to modified.
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                //Show File dialog.
-                openFileDialog1.ShowDialog();
-               
-                string filename = openFileDialog1.FileName;
-                string tabname = newTab.getTabName(tabControl2.SelectedIndex);
-
-                //Create new instance of a rich textbox.
-                RichTextBox newTextBox = new RichTextBox();
-
-                // Fill the tab with the textbox
-                newTextBox.Dock = DockStyle.Fill;
-            
-                //Set the name of textbox dymaically
-                newTextBox.Name = filehandler.getFileName(tabControl2.TabCount + 1);
-
-                // Create new tab.
-                filehandler.readFile(tabControl2.SelectedIndex, filename);
-                tabControl2.TabPages.Add(tabname); //Add new tab with the file name already set.
-                this.tabControl2.TabPages[tabControl2.TabPages.Count].Controls.Add(newTextBox); //create textbox in new tab
-                
+            string filenamepath;
+            int selectedtab = tabControl2.SelectedIndex;
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + selectedtab, true)[0]; //Reference textbox for currently selected tab.
 
 
-                //newFile.FileName[tabControl2.TabPages.Count + 1] = openFileDialog1.FileName;
-                //newTab.Text[tabControl2.TabPages.Count + 1] = newFile.FileName[tabControl2.TabPages.Count + 1]; //Show filename in tab.
+            //Open file manager for file selection
+            openFileDialog1.ShowDialog();
+            filenamepath = openFileDialog1.FileName;
+
+            StreamReader openTxt = new StreamReader(filenamepath);
+            txtname.Text = openTxt.ReadToEnd();
+            tabControl2.TabPages[selectedtab].Text = Path.GetFileName(filenamepath);
 
 
-                // New Stream reader
-                
-                
+
+
+
 
         }
 
@@ -219,36 +195,17 @@ namespace CSNotepad
         }
 
 
-
-
-        //Handles the creation of a new tab.
-        private void createNewTab(int newtabnumber, string newtabname, string newtext)
+        private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Create new textbox
-            RichTextBox newTextBox = new RichTextBox();
-            newTextBox.Text = newtext;
+            //TODO: add undo
+        }
 
-
-            //Create new tab.
-            newTab.createTab(tabControl2.TabPages.Count + 1, "newtab", "");
-            tabControl2.TabPages.Add(newtabname); //Add new tab with the file name already set.
-            this.tabControl2.TabPages[newtabnumber].Controls.Add(newTextBox); //create textbox in new tab
+        private void redoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //TODO: add redo.
+        }
             
-            //http://www.codeproject.com/Questions/210229/How-to-add-a-dynamic-RichTextBox-to-a-dynamically
-        }
-
-
-        private void createNewTextbox(int newtextboxname, string newtabname, string newtabtext)
-        {
-            //Get number of loaded tabs and then increase it by one.
-            //Set the fille property, to fill the tab
-
-            RichTextBox newTextBox = new RichTextBox();
-            newTextBox.Dock = DockStyle.Fill;
-            newTextBox.Name = filehandler.getFileName(tabControl2.SelectedIndex + 1);
-        }
-
-
+          
 
 
     }
