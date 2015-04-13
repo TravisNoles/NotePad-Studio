@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using FileStream;
-using System.Collections.Generic;
 
 namespace CSNotepad
 {
     //Handles file ops.
     public class File
     {
-        private Dictionary<int, List<String>> FileStor = new Dictionary<int, List<string>>();
+
+        /*
+        //<int tabnumber>: FileName, FilePath
+        
 
         //List<string>: Stores properties:
             // 0: FileName
@@ -20,13 +21,13 @@ namespace CSNotepad
             // 2: FilePath
             // 3: IsModified
 
-        //Get/Set File Name
+        //Get FileName
         public string getFileName(int selectedTab)
         {
             return FileStor[selectedTab][0]; // 0 is filename.
         }
 
-        //Set the filename
+        //Set FleName
         public void setFileName(int selectedTab, string fileName)
         {
             FileStor[selectedTab].Insert(0, fileName);
@@ -39,9 +40,9 @@ namespace CSNotepad
         }
 
         //Set modification property of the file.
-        public void setFilePropertyModified(int selectedTab)
+        public void setFilePropertyModified(int selectedTab, bool value)
         {
-            FileStor[selectedTab].Insert(3, "true");
+            //FileStor[selectedTab].Insert(3, value.ToString());
         }
 
         //Read File
@@ -58,6 +59,10 @@ namespace CSNotepad
 
 
         }
+
+
+
+        
 
 
 

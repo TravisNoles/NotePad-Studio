@@ -1,21 +1,24 @@
 NOTEPAD STUDIO - CHANGELOG
 
-v0.2.0-alpha.1
+v0.1.0-final
 
+
+Complete code overhaul
 
 * FEATURE: Added open new file in new tab.
 * FEATURE: Right-click add file to sidebar.
 * FEATURE: Copying and pasting.
-* MISC: Renamed left tab sidebar text to contents.
-* Revamped code, and changed to using dictionaries, instead of classes.
-* Combined code to manage both tabs and files in one class.
+* FEATURE: Undo and redo
+* FEATURE: Can now save file
+* FEATURE: New file with new tab and title set.
+* FEATURE: Open existing file.
+* FEATURE: Set tab name to the filename when opening an existing file.
+* MISC: Renamed left tab sidebar text to "contents".
 
 
 
 
-
-
-v0.1.0-alpha2
+v0.1.0-alpha.2
 
 * BUGFIX: Sidebar doesn't toggle when clicking on View > Sidebar.
 * FEATURE: Wordwrapping toggle, on by default.
@@ -38,7 +41,7 @@ KNOWN BUG: Open tab doesn't generate new tab text, and only opens in first tab. 
 Please report bugs via the Github issues tracker.
 
 
-v0.1.0-alpha1
+v0.1.0-alpha.1
 
 First alpha with sematic versioning system.
 Changed savefile function to  support .txt support and all files. display accordingly.

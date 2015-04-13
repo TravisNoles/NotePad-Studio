@@ -9,13 +9,8 @@ namespace CSNotepad
     //Tab management class.
     class Tab
     {
-        //TabStor -- Tab Properties
-            //List: 
-            // 1) Tab Name
-            // 2) Tab Text
-
-
-        private Dictionary<int, List<string>> TabStor = new Dictionary<int, List<string>>();
+        /*
+        
         private int _tabsOpen;
 
         //Get/Set tabs that are open (locally)
@@ -25,12 +20,12 @@ namespace CSNotepad
             {
                 return _tabsOpen;
             }
-            
+
             set
             {
                 _tabsOpen = value;
             }
-            
+
 
         }
 
@@ -46,18 +41,12 @@ namespace CSNotepad
             return tabsOpen + 1;
         }
 
-        //Set New Tab Number
-        public void setNewTabNumber(int selectedTab)
-        {
-            int newtab = getNewTabNumberAsInt();
-            TabStor[newtab].Insert(0, getNewTabNumberAsString());
-        }
-
-        //Generate new tab number
         public int getNewTabNumberAsInt()
         {
             return _tabsOpen + 1;
         }
+        
+        */
 
     }
 }

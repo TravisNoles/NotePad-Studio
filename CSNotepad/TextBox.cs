@@ -9,8 +9,9 @@ namespace CSNotepad
 {
 
     //Combines tabs and files 
-    class FileTabs
+    class TextBox
     {
+
 
 
 
