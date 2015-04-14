@@ -7,27 +7,50 @@ Notepad Studio is a new free open-source full-featured notepad alternative. It w
 
 Notepad Studio is currently in early pre-alpha testing/development. Not for production use.
 
+CURRENT FUTURES
+---------------
 
-PLANNED FEATURES
+* Wordwrapping
+* Copy/Paste/Cut
+* Create new file
+* Open existing file
+
+
+
+FEATURE ROADMAP
 -----------------
 
-* Easy to use interface.
-* Spell checking
-* Cloud save
-* Dragging and dropping
+v0.2.0
+
+* Line Numbers
+* Close Tab
+
+v0.3.0
+
 * Workspaces
-* Wordwrapping
-* Line numbers
-* Auto-Correct
-* Note templates
-* Versioning (Git, SVN support)
+* Dragging and dropping text support
+* Note Templates
+* 
+
+v0.4.0
+
+* Spell Check
+
+
+v0.5.0
+
+* Versioning - Git support
+
+v0.6.0
+
 * Markdown Support - http://daringfireball.net/projects/markdown/
+* Cloud Saving
 
 
 CHANGE LOG
 -----------
 
-https://github.com/TravisNoles/NotePad-Studio/blob/master/CSNotepad/changelog.txt
+Latest: https://github.com/TravisNoles/NotePad-Studio/blob/master/CSNotepad/changelog.txt
 
 
 CONTRIBUTING
