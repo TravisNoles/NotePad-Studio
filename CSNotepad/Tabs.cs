@@ -9,6 +9,17 @@ namespace CSNotepad
     //Tab management class.
     class Tab
     {
+        int index;
+        int tabsOpen;
+        string name;
+        string text;
+
+
+
+
+
+
+
         /*
         
         private int _tabsOpen;

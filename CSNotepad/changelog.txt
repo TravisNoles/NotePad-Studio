@@ -1,5 +1,14 @@
 NOTEPAD STUDIO - CHANGELOG
 
+v0.2.0
+
+Moved text storage to classes
+Added blank properties class for later use.
+Created specific class handlers (textbox, tabs, and files)
+
+
+
+
 v0.1.0-final
 
 

@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties.cs" />
     <Compile Include="TextBox.cs" />
     <Compile Include="Tabs.cs" />
     <Compile Include="TextFormatting.cs" />

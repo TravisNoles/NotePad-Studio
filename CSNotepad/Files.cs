@@ -10,6 +10,14 @@ namespace CSNotepad
     //Handles file ops.
     public class File
     {
+        string name;
+        string text;
+        bool modified;
+
+
+
+
+
 
         /*
         //<int tabnumber>: FileName, FilePath
