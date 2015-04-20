@@ -76,11 +76,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="instances.cs" />
+    <Compile Include="LoadedFiles.cs" />
+    <Compile Include="OpenFile.cs" />
     <Compile Include="Properties.cs" />
-    <Compile Include="TextBox.cs" />
-    <Compile Include="Tabs.cs" />
-    <Compile Include="TextFormatting.cs" />
-    <Compile Include="Files.cs" />
+    <Compile Include="NewTextBox.cs" />
+    <Compile Include="NewTab.cs" />
+    <Compile Include="NewFile.cs" />
     <Compile Include="frmNotepad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,6 +91,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveFile.cs" />
+    <Compile Include="TabProperties.cs" />
     <EmbeddedResource Include="frmNotepad.resx">
       <DependentUpon>frmNotepad.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSNotepad
 {
-    class Properties
+    class AppProperties
     {
 
 
