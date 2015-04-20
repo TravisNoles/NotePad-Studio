@@ -72,20 +72,16 @@ namespace CSNotepad
             string currenttab = (tabControl2.SelectedIndex).ToString();
             RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currenttab, true)[0];
 
-
             //Display savefile dialog to user.
             saveFileDialog1.ShowDialog();
             string filename = saveFileDialog1.FileName;
-
 
             //Prevents empty path (causing an empty path exception)
             if (filename != "")
             {
                 StreamWriter newtextfile = new StreamWriter(filename);
-                //Save file to user specified folder.
                 newtextfile.WriteLine(txtname.Text);
                 newtextfile.Close();
-
             }
 
             
@@ -108,13 +104,14 @@ namespace CSNotepad
             openFileDialog1.ShowDialog();
             filenamepath = openFileDialog1.FileName;
 
-            StreamReader openTxt = new StreamReader(filenamepath);
-            txtname.Text = openTxt.ReadToEnd();
-            tabControl2.TabPages[selectedtab].Text = Path.GetFileName(filenamepath);
 
 
-
-
+            if (filenamepath != "")
+            {
+                StreamReader openTxt = new StreamReader(filenamepath);
+                txtname.Text = openTxt.ReadToEnd();
+                tabControl2.TabPages[selectedtab].Text = Path.GetFileName(filenamepath);
+            }
 
 
         }
@@ -184,9 +181,6 @@ namespace CSNotepad
         private void renameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
-
-
-
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)

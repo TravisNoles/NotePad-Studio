@@ -49,17 +49,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>fURZlBIAyGm745VOkSGNcXaTKXUG2FY4k5I8VgHp0EU=</dsig:DigestValue>
+        <dsig:DigestValue>n/fNT5RKGGa3E3pNr42GpLlsrjWOaEmuRkHJtu7TpK8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="changelog.txt" size="2132">
+  <file name="changelog.txt" size="2201">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>ssTYllvb1LvGch+ADw+QJP4nlZoiBzh7goM1Xt8fRQA=</dsig:DigestValue>
+      <dsig:DigestValue>ECGVka+FyEkw3i2OaWThCfpAnrmmkn8jZlUDyvHmeQI=</dsig:DigestValue>
     </hash>
   </file>
   <file name="CSNotepad.exe.config" size="187">

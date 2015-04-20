@@ -1,5 +1,9 @@
 NOTEPAD STUDIO - CHANGELOG
 
+v0.2.0-alpha
+* Changed default visibility of sidebar to false.
+
+
 v0.1.0-final
 
 
