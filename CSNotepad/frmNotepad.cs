@@ -7,9 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CSNotepad.Properties;
 using System.IO;
 using System.Dynamic;
+using System.Reflection;
+using System.Runtime.Remoting;
+
+
 
 //Changes:
 // Wordwrap, copy and pasting, opening file, saving file.
@@ -19,44 +22,42 @@ namespace CSNotepad
 {
     public partial class frmNotepad : Form
     {
-        //Create new instance of file class.
-        //File filehandler = new File();
-        //Tab tabhandler = new Tab();
-
-        //Tab Dictionary: tabIndex, TabData(TabName, TabText);
-        //Dictionary<int, List<string>> TabStor = new Dictionary<int, List<string>>();
-        //File dictionary: index, FileData(FileName, FilePath, FileText, ismodified)
-
-
         public frmNotepad()
         {
             InitializeComponent();
         }
-
-
         //Create new text file in a new tab.
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            //Create the FileName (randomize)
-            string fileName = System.IO.Path.GetRandomFileName();
 
-            StreamWriter newtext = new StreamWriter(fileName);
-            
-            newtext.WriteLine(""); //Write new file (blank)
-            
+            //intialize accessors.
+
+            NewFile newfilecreator = new NewFile();
+            NewTextBox newtxtboxcreator= new NewTextBox();
+            SaveFile savefilecreator = new SaveFile();
+            NewTab newtabcreator = new NewTab();
+
+            // Create new Random File (with default values)
+            newfilecreator.CreateNewDefaultFile();
+
+            //Set tabs currently open.
+            newtabcreator.TabsOpen = tabCtrlFiles.TabCount;
+
+            //Create tab with filename as text
+            tabCtrlFiles.TabPages.Add(newfilecreator.DefaultName);
+     
             //Create TextBox & Set Properties
             RichTextBox newTextBox = new RichTextBox(); //Create new instance of richtextbox and setup
-            newTextBox.Name = "textArea" + tabControl2.TabCount; //increase the total by 1, to create the tab on the right.
-            MessageBox.Show(newTextBox.Name, "test", MessageBoxButtons.OK);
+            newTextBox.Name = newtxtboxcreator.Name;
             newTextBox.Multiline = true;
             newTextBox.WordWrap = wordWrapToolStripMenuItem.Checked; //if checked is true, sets wordwrap of new text file to true as well. extracts the bool value.
             newTextBox.Dock = DockStyle.Fill; // Fill dock to tab a new tab.
 
             // Add new tab.
-            tabControl2.TabPages.Add("test");
+            
             //tabControl2.TabPages[tabControl2.TabPages.Count - 1].Text = "New Text" + " " + tabControl2.TabPages.Count;
-            tabControl2.TabPages[tabControl2.TabPages.Count - 1].Text = fileName;
-            this.tabControl2.TabPages[tabControl2.TabPages.Count - 1].Controls.Add(newTextBox); //Place textbox in new tab. (.count subroutine is returning from index 1 and not index 0)
+            tabCtrlFiles.TabPages[tabCtrlFiles.TabPages.Count - 1].Text = NewFile.DefaultName;
+            this.tabCtrlFiles.TabPages[tabCtrlFiles.TabPages.Count - 1].Controls.Add(newTextBox); //Place textbox in new tab. (.count subroutine is returning from index 1 and not index 0)
             
 
             // http://www.codeproject.com/Questions/210229/How-to-add-a-dynamic-RichTextBox-to-a-dynamically
@@ -68,20 +69,25 @@ namespace CSNotepad
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //Find textbox in current tab, and store new instance of it in txtname.
+            SaveFile savefilehandler = new SaveFile();
 
-            string currenttab = (tabControl2.SelectedIndex).ToString();
+            string currenttab = (tabCtrlFiles.SelectedIndex).ToString();
             RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currenttab, true)[0];
+
 
             //Display savefile dialog to user.
             saveFileDialog1.ShowDialog();
-            string filename = saveFileDialog1.FileName;
+            savefilehandler.Name = saveFileDialog1.FileName;
 
-            //Prevents empty path (causing an empty path exception)
-            if (filename != "")
+
+
+            if (savefilehandler.Name != "")//Prevents empty path (causing an empty path exception)
             {
-                StreamWriter newtextfile = new StreamWriter(filename);
+                StreamWriter newtextfile = new StreamWriter(savefilehandler.Name);
+                //Save file to user specified folder.
                 newtextfile.WriteLine(txtname.Text);
                 newtextfile.Close();
+
             }
 
             
@@ -90,13 +96,15 @@ namespace CSNotepad
         // Each time user changes the text field.
         private void textArea0_TextChanged(object sender, EventArgs e)
         {
+
+
             //filehandler.setFilePropertyModified(tabControl2.SelectedIndex, true); // Change selected tab for file to modified.
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string filenamepath;
-            int selectedtab = tabControl2.SelectedIndex;
+            int selectedtab = tabCtrlFiles.SelectedIndex;
             RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + selectedtab, true)[0]; //Reference textbox for currently selected tab.
 
 
@@ -104,14 +112,13 @@ namespace CSNotepad
             openFileDialog1.ShowDialog();
             filenamepath = openFileDialog1.FileName;
 
+            StreamReader openTxt = new StreamReader(filenamepath);
+            txtname.Text = openTxt.ReadToEnd();
+            tabCtrlFiles.TabPages[selectedtab].Text = Path.GetFileName(filenamepath);
 
 
-            if (filenamepath != "")
-            {
-                StreamReader openTxt = new StreamReader(filenamepath);
-                txtname.Text = openTxt.ReadToEnd();
-                tabControl2.TabPages[selectedtab].Text = Path.GetFileName(filenamepath);
-            }
+
+
 
 
         }
@@ -181,6 +188,9 @@ namespace CSNotepad
         private void renameToolStripMenuItem_Click(object sender, EventArgs e)
         {
             
+
+
+
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -198,8 +208,19 @@ namespace CSNotepad
         {
             //TODO: add redo.
         }
+
+        private void frmNotepad_Load(object sender, EventArgs e)
+        {
+
+        }
             
           
+
+        private void debugMsg(string title, string message)
+        {
+            MessageBox.Show(message, title, MessageBoxButtons.OK);
+        }
+
 
 
     }
