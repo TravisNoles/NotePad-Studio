@@ -10,17 +10,21 @@ namespace CSNotepad
     //Handles file ops, generic class of type new
     public class NewFile
     {
-        private string _Name;
-        private string _Text;
-
-
         public string CreateNewDefaultFile()
         {
-            _Name = DefaultName = System.IO.Path.GetRandomFileName();
+            DataStorage AccessData = new DataStorage();
+
+            DataStorage.Name.Add(System.IO.Path.GetRandomFileName());
+            DataStorage.Text.Add("");
+
+            // Generate blank file.
+            for (int index = 0; index < 0; index++)
+            {
+                DataStorage.Text.Add("");
+            }
 
 
-
-
+            
 
             return _Name;
         }

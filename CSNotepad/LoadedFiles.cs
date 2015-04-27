@@ -8,9 +8,10 @@ namespace CSNotepad
 {
     public class LoadedFiles
     {
-        List<string> _Name = new List<string>();
-        List<string> _Text = new List<string>();
-        List<bool> _Modified = new List<bool>();
+        public List<string> _Name = new List<string>();
+        public List<string> _Text = new List<string>();
+        public List<bool> _Modified = new List<bool>();
+        public List<int> _LineNumbers = new List<int>();
 
 
 

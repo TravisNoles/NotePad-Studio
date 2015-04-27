@@ -29,7 +29,6 @@ namespace CSNotepad
         //Create new text file in a new tab.
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-
             //intialize accessors.
 
             NewFile newfilecreator = new NewFile();

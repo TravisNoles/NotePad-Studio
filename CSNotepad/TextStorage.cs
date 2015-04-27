@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace CSNotepad
 {
-    class AppProperties
+    class DataStorage
     {
-        public static int maxlines = 50000; //ha
-
+        public static List<string> Name = new List<string>();
+        public static List<string> Text = new List<string>();
 
 
     }

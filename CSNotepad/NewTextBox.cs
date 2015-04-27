@@ -14,7 +14,6 @@ namespace CSNotepad
         string _Text;
         bool _WordWrap;
 
-
         //Create default text box.
         public string Name
         {
