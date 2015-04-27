@@ -33,7 +33,7 @@ namespace CSNotepad
 
         public string getNewText()
         {
-            return _Name[_numberOfTabs];
+            return _Text[_numberOfTabs];
         }
 
         public void setNumOfTabs(int tabs)
