@@ -56,6 +56,7 @@
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.sidebarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lineNumbersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.textToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.wordWrapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,8 +79,6 @@
             this.treeView2 = new System.Windows.Forms.TreeView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabCtrlFiles = new System.Windows.Forms.TabControl();
-            this.lineNumbersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.contextNoteArea.SuspendLayout();
@@ -109,7 +108,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(754, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(784, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -279,9 +278,17 @@
             this.sidebarToolStripMenuItem.CheckOnClick = true;
             this.sidebarToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.sidebarToolStripMenuItem.Name = "sidebarToolStripMenuItem";
-            this.sidebarToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.sidebarToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.sidebarToolStripMenuItem.Text = "Sidebar";
             this.sidebarToolStripMenuItem.Click += new System.EventHandler(this.sidebarToolStripMenuItem_Click);
+            // 
+            // lineNumbersToolStripMenuItem
+            // 
+            this.lineNumbersToolStripMenuItem.Checked = true;
+            this.lineNumbersToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.lineNumbersToolStripMenuItem.Name = "lineNumbersToolStripMenuItem";
+            this.lineNumbersToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.lineNumbersToolStripMenuItem.Text = "Line Numbers";
             // 
             // textToolStripMenuItem
             // 
@@ -318,7 +325,7 @@
             // aboutToolStripMenuItem1
             // 
             this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
-            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem1.Text = "About";
             // 
             // tabPage1
@@ -386,7 +393,7 @@
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(134, 440);
+            this.tabControl1.Size = new System.Drawing.Size(134, 555);
             this.tabControl1.TabIndex = 3;
             // 
             // contextTabMenu
@@ -418,7 +425,7 @@
             this.tabWorkspace.Location = new System.Drawing.Point(23, 4);
             this.tabWorkspace.Name = "tabWorkspace";
             this.tabWorkspace.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWorkspace.Size = new System.Drawing.Size(107, 432);
+            this.tabWorkspace.Size = new System.Drawing.Size(107, 547);
             this.tabWorkspace.TabIndex = 0;
             this.tabWorkspace.Text = "Explorer";
             this.tabWorkspace.UseVisualStyleBackColor = true;
@@ -426,13 +433,14 @@
             // 
             // treeView1
             // 
-            this.treeView1.Location = new System.Drawing.Point(6, 4);
+            this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView1.Location = new System.Drawing.Point(3, 3);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "treeviewRootWorkspace";
             treeNode1.Text = "New File";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1});
-            this.treeView1.Size = new System.Drawing.Size(95, 401);
+            this.treeView1.Size = new System.Drawing.Size(101, 541);
             this.treeView1.TabIndex = 0;
             // 
             // tabFileProps
@@ -441,16 +449,17 @@
             this.tabFileProps.Location = new System.Drawing.Point(23, 4);
             this.tabFileProps.Name = "tabFileProps";
             this.tabFileProps.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFileProps.Size = new System.Drawing.Size(107, 432);
+            this.tabFileProps.Size = new System.Drawing.Size(107, 547);
             this.tabFileProps.TabIndex = 1;
             this.tabFileProps.Text = "Contents";
             this.tabFileProps.UseVisualStyleBackColor = true;
             // 
             // treeView2
             // 
-            this.treeView2.Location = new System.Drawing.Point(6, 6);
+            this.treeView2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView2.Location = new System.Drawing.Point(3, 3);
             this.treeView2.Name = "treeView2";
-            this.treeView2.Size = new System.Drawing.Size(114, 401);
+            this.treeView2.Size = new System.Drawing.Size(101, 541);
             this.treeView2.TabIndex = 1;
             // 
             // openFileDialog1
@@ -460,38 +469,20 @@
             // 
             // tabCtrlFiles
             // 
-            this.tabCtrlFiles.ContextMenuStrip = this.contextTabMenu;
-            this.tabCtrlFiles.Location = new System.Drawing.Point(161, 24);
+            this.tabCtrlFiles.ContextMenuStrip = this.contextNoteArea;
+            this.tabCtrlFiles.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabCtrlFiles.Location = new System.Drawing.Point(134, 24);
             this.tabCtrlFiles.Name = "tabCtrlFiles";
             this.tabCtrlFiles.SelectedIndex = 0;
-            this.tabCtrlFiles.Size = new System.Drawing.Size(593, 440);
+            this.tabCtrlFiles.Size = new System.Drawing.Size(650, 555);
             this.tabCtrlFiles.TabIndex = 0;
-            // 
-            // lineNumbersToolStripMenuItem
-            // 
-            this.lineNumbersToolStripMenuItem.Checked = true;
-            this.lineNumbersToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.lineNumbersToolStripMenuItem.Name = "lineNumbersToolStripMenuItem";
-            this.lineNumbersToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.lineNumbersToolStripMenuItem.Text = "Line Numbers";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "1"});
-            this.listBox1.Location = new System.Drawing.Point(136, 26);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(22, 438);
-            this.listBox1.TabIndex = 1;
             // 
             // frmNotepad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(754, 464);
-            this.Controls.Add(this.listBox1);
+            this.ClientSize = new System.Drawing.Size(784, 579);
             this.Controls.Add(this.tabCtrlFiles);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
@@ -516,7 +507,6 @@
          #endregion
 
          private System.Windows.Forms.RichTextBox richTextBox1;
-         private System.Windows.Forms.RichTextBox notePadField0;
          private System.Windows.Forms.MenuStrip menuStrip1;
          private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
          private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
@@ -564,6 +554,5 @@
          private System.Windows.Forms.ToolStripMenuItem renameToolStripMenuItem;
          private System.Windows.Forms.ToolStripMenuItem openInNewWindowToolStripMenuItem;
          private System.Windows.Forms.ToolStripMenuItem lineNumbersToolStripMenuItem;
-         private System.Windows.Forms.ListBox listBox1;
      }
  }

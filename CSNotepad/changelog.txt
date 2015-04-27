@@ -2,16 +2,13 @@ NOTEPAD STUDIO - CHANGELOG
 
 v0.2.0
 
-Created specific class handlers by type (newfile, newtab, newtextbox, open, close, etc..)
-Improved code readibility.
-Major code cleanup w/ classes.
-Renamed notetab object.
-* FEATURE: Resume tabs at startup or create default loaded tab at startup programmically. 
+* Complete code refactoring, created specific class handlers (FileH, TabH, TextBoxesH)
+* Improved code readability.
+* Everything loads dynamically.
+* Improved GUI w/ Interface tweaks
 * Added a menu item for line numbers under view.
 * Renamed "Workspace" tab to "Explorer" tab
-* GUI Tweaks
-* Added the beginning workings of a line numbers display
-
+* Fixed: Out of bounds access for undo redo, and access dynamically.
 
 v0.1.0-final
 
