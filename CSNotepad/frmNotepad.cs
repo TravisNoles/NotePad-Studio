@@ -29,35 +29,39 @@ namespace CSNotepad
         //Create new text file in a new tab.
         private void newToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
+            //2) Create New File
+            FileH newFile = new FileH();
+            newFile.setNumOfTabs(tabCtrlFiles.TabCount);
+            newFile.GenerateNew();
+            newFile.getNewName();
+            //debugMsg("Test", newFile.getNewName());
 
-            //intialize accessors.
 
-            NewFile newfilecreator = new NewFile();
-            NewTextBox newtxtboxcreator= new NewTextBox();
-            SaveFile savefilecreator = new SaveFile();
-            NewTab newtabcreator = new NewTab();
+           //Generate Tab Data
+           Tab newtab = new Tab();
+           newtab.setNumOfTab(tabCtrlFiles.TabCount);
+           newtab.GenerateNew(); //Generate new file with defaults
+           tabCtrlFiles.TabPages.Add(newtab.getNewText(tabCtrlFiles.TabCount));
 
-            // Create new Random File (with default values)
-            newfilecreator.CreateNewDefaultFile();
 
-            //Set tabs currently open.
-            newtabcreator.TabsOpen = tabCtrlFiles.TabCount;
-
-            //Create tab with filename as text
-            tabCtrlFiles.TabPages.Add(newfilecreator.DefaultName);
-     
-            //Create TextBox & Set Properties
             RichTextBox newTextBox = new RichTextBox(); //Create new instance of richtextbox and setup
-            newTextBox.Name = newtxtboxcreator.Name;
+            TextBoxesH newTextBoxProps = new TextBoxesH();
+            newTextBoxProps.setNumOfTabs(tabCtrlFiles.TabCount);
+            newTextBoxProps.GenerateTextBox();
+            newTextBox.Name = newTextBoxProps.getNewName();
+            newTextBox.Text = newTextBoxProps.getNewText();
             newTextBox.Multiline = true;
             newTextBox.WordWrap = wordWrapToolStripMenuItem.Checked; //if checked is true, sets wordwrap of new text file to true as well. extracts the bool value.
             newTextBox.Dock = DockStyle.Fill; // Fill dock to tab a new tab.
+            this.tabCtrlFiles.TabPages[tabCtrlFiles.TabPages.Count - 1].Controls.Add(newTextBox); //Place textbox in new tab. (.count subroutine is returning from index 1 and not index 0)
+
+
 
             // Add new tab.
             
             //tabControl2.TabPages[tabControl2.TabPages.Count - 1].Text = "New Text" + " " + tabControl2.TabPages.Count;
-            tabCtrlFiles.TabPages[tabCtrlFiles.TabPages.Count - 1].Text = NewFile.DefaultName;
-            this.tabCtrlFiles.TabPages[tabCtrlFiles.TabPages.Count - 1].Controls.Add(newTextBox); //Place textbox in new tab. (.count subroutine is returning from index 1 and not index 0)
+            //tabCtrlFiles.TabPages[tabCtrlFiles.TabPages.Count - 1].Text = newfile.Name;
+            //
             
 
             // http://www.codeproject.com/Questions/210229/How-to-add-a-dynamic-RichTextBox-to-a-dynamically
@@ -68,27 +72,17 @@ namespace CSNotepad
         // Save existing document
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Find textbox in current tab, and store new instance of it in txtname.
-            SaveFile savefilehandler = new SaveFile();
-
-            string currenttab = (tabCtrlFiles.SelectedIndex).ToString();
-            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currenttab, true)[0];
-
-
             //Display savefile dialog to user.
+            FileH saveFile = new FileH();
             saveFileDialog1.ShowDialog();
-            savefilehandler.Name = saveFileDialog1.FileName;
 
-
-
-            if (savefilehandler.Name != "")//Prevents empty path (causing an empty path exception)
-            {
-                StreamWriter newtextfile = new StreamWriter(savefilehandler.Name);
-                //Save file to user specified folder.
-                newtextfile.WriteLine(txtname.Text);
-                newtextfile.Close();
-
-            }
+            //RichTextBox txtbx = (RichTextBox)Controls["textArea" + tabCtrlFiles.SelectedIndex.ToString()];
+            int currenttabint = tabCtrlFiles.SelectedIndex + 1;
+            string currentabstr = currenttabint.ToString();
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currentabstr, true)[0];
+            debugMsg("test", txtname.Name);
+            saveFile.Save(tabCtrlFiles.SelectedIndex, saveFileDialog1.FileName, txtname.Text);
+  
 
             
         }
@@ -104,17 +98,19 @@ namespace CSNotepad
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string filenamepath;
-            int selectedtab = tabCtrlFiles.SelectedIndex;
-            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + selectedtab, true)[0]; //Reference textbox for currently selected tab.
+            string currentab = (tabCtrlFiles.SelectedIndex + 1).ToString();
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currentab, true)[0];
 
 
             //Open file manager for file selection
             openFileDialog1.ShowDialog();
             filenamepath = openFileDialog1.FileName;
+            FileH openfile = new FileH();
 
-            StreamReader openTxt = new StreamReader(filenamepath);
-            txtname.Text = openTxt.ReadToEnd();
-            tabCtrlFiles.TabPages[selectedtab].Text = Path.GetFileName(filenamepath);
+  
+            tabCtrlFiles.TabPages[tabCtrlFiles.SelectedIndex].Text = Path.GetFileName(filenamepath);
+            openfile.OpenExisting(tabCtrlFiles.SelectedIndex, filenamepath);
+            txtname.Text = openfile.getExistingText(tabCtrlFiles.SelectedIndex);
 
 
 
@@ -154,30 +150,36 @@ namespace CSNotepad
 
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(textArea0.SelectedText);
+            //TODO: Call selected textbox dynamically
+            string currentab = (tabCtrlFiles.SelectedIndex + 1).ToString();
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currentab, true)[0];
         }
 
         // Paste text into textbox area (from clipboard)
         private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            string currentab = (tabCtrlFiles.SelectedIndex + 1).ToString();
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currentab, true)[0];
             Clipboard.GetText();
-            textArea0.Paste();
+            txtname.Paste();
         }
 
         private void wordWrapToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + tabCtrlFiles.SelectedIndex + 1.ToString(), true)[0];
+
 
             //toggle wordwrap toggling
             if (sidebarToolStripMenuItem.Checked == true)
             {
-                textArea0.WordWrap = false;
+                txtname.WordWrap = false;
 
             }
 
 
             if (sidebarToolStripMenuItem.Checked == false)
             {
-                textArea0.WordWrap = true;
+                txtname.WordWrap = true;
 
             }
 
@@ -201,12 +203,16 @@ namespace CSNotepad
 
         private void undoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO: add undo
+            string currentab = (tabCtrlFiles.SelectedIndex + 1).ToString();
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currentab, true)[0];
+            txtname.Undo();
         }
 
         private void redoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //TODO: add redo.
+            string currentab = (tabCtrlFiles.SelectedIndex + 1).ToString();
+            RichTextBox txtname = (RichTextBox)this.Controls.Find("textArea" + currentab, true)[0];
+            txtname.Redo();
         }
 
         private void frmNotepad_Load(object sender, EventArgs e)
